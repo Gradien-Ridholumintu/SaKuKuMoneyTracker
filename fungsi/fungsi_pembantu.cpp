@@ -18,9 +18,9 @@ void bersihkan_terminal()
 
 void enter_untuk_lanjut()
 {
-    cout << "\nTekan [ENTER] untuk kembali...";
-    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // membersihkan buffer input
-    cin.get(); // menunggu input enter
+    cout << "\nTekan [ENTER] untuk kembali..."; // menampilkan pesan untuk menekan enter
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // membersihkan buffer input agar tidak ada sisa input
+    cin.get(); // menunggu input enter dari pengguna
 }
 
 void cetak_judul(const string& judul)
@@ -36,44 +36,62 @@ void cetak_garis_tabel()
     cout << string(4, '-') << "+"; // No
     cout << string(14, '-') << "+"; // Tanggal
     cout << string(13, '-') << "+"; // Tipe
-    cout << string(16, '-') << "+"; // Kategori
-    cout << string(26, '-') << "+"; // Deskripsi
-    cout << string(20, '-') << "+"; // Nominal
+    cout << string(26, '-') << "+"; // Kategori
+    cout << string(36, '-') << "+"; // Deskripsi
+    cout << string(30, '-') << "+"; // Nominal
     cout << "\n";
+}
+
+// ASCII Art logo program
+const string logo = CYAN "  $$$$$$\\            $$\\   $$\\          $$\\   $$\\          \n"
+                         " $$  __$$\\           $$ | $$  |         $$ | $$  |         \n"
+                         " $$ /  \\__| $$$$$$\\  $$ |$$  /$$\\   $$\\ $$ |$$  /$$\\   $$\\ \n"
+                         " \\$$$$$$\\   \\____$$\\ $$$$$  / $$ |  $$ |$$$$$  / $$ |  $$ |\n"
+                         "  \\____$$\\  $$$$$$$ |$$  $$<  $$ |  $$ |$$  $$<  $$ |  $$ |\n"
+                         " $$\\   $$ |$$  __$$ |$$ |\\$$\\ $$ |  $$ |$$ |\\$$\\ $$ |  $$ |\n"
+                         " \\$$$$$$  |\\$$$$$$$ |$$ | \\$$\\\\$$$$$$  |$$ | \\$$\\\\$$$$$$  |\n"
+                         "  \\______/  \\_______|\\__|  \\__|\\______/ \\__|  \\__|\\______/ \n" RESET;
+
+void cetak_logo()
+{
+    cout << logo << "\n"; // menampilkan logo ASCII art
+    cout << BG_BLUE << WHITE << BOLD // mengatur warna latar belakang biru dengan teks putih tebal
+         << string(18, ' ') << "SMART MONEY TRACKER APP" << string(18, ' ') << RESET << "\n"; // menampilkan judul aplikasi
+    cout << CYAN << "   ====================================================" << RESET << "\n\n"; // menampilkan garis pemisah
 }
 
 bool validasi_tanggal(const string& tanggal)
 {
-    // cek panjang harus 10 (YYYY-MM-DD)
-    if (tanggal.length() == 10) { return true; }
-    return false;
+    // cek panjang tanggal harus 10 (YYYY-MM-DD)
+    if (tanggal.length() == 10) { return true; } // jika panjang tanggal sesuai maka kembalikan true
+    return false; // jika panjang tanggal tidak sesuai maka kembalikan false
 }
 
 long long validasi_input_angka(const string& perintah)
 {
-    long long nilai;
+    long long nilai; // variabel untuk menyimpan input angka
     while (true) {
-        std::cout << perintah; // menampilkan perintah input
-        if (std::cin >> nilai) { return nilai; } // jika input adalah angka maka kembalikan nilai
-        std::cout << BG_RED << WHITE << " [!] Input harus angka! " << RESET << "\n"; // pesan error
-        std::cin.clear(); // membersihkan flag error
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // membersihkan buffer input
+        cout << perintah; // menampilkan perintah input
+        if (cin >> nilai) { return nilai; } // jika input adalah angka maka kembalikan nilai
+        cout << BG_RED << WHITE << " [!] Input harus angka! " << RESET << "\n"; // jika input bukan angka maka cetak pesan error
+        cin.clear(); // membersihkan flag error agar cin dapat digunakan kembali
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // membersihkan buffer input agar tidak ada sisa input
     }
 }
 
 int validasi_pilihan_menu(const string& perintah, const int min, const int max)
 {
-    int pilihan;
+    int pilihan; // variabel untuk menyimpan input pilihan menu
     while (true) {
         cout << perintah; // menampilkan perintah input
-        if (cin >> pilihan) { // jika input adalah angka
+        if (cin >> pilihan) { // jika pilihan adalah angka
             if (pilihan >= min && pilihan <= max) return pilihan; // jika pilihan ada dalam range maka kembalikan nilai
-            cout << BG_RED << WHITE << " [!] Pilihan tidak ada. " << RESET << "\n"; // pesan error
+            cout << BG_RED << WHITE << " [!] Pilihan tidak ada. " << RESET << "\n"; // jika pilihan di luar range maka cetak pesan error
         }
-        else { // jika input bukan angka
-            cout << BG_RED << WHITE << " [!] Input harus angka! " << RESET << "\n"; // pesan error
-            cin.clear(); // membersihkan flag error
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // membersihkan buffer input
+        else { // jika pilihan bukan angka
+            cout << BG_RED << WHITE << " [!] Input harus angka! " << RESET << "\n"; // jika pilihan bukan angka maka cetak pesan error
+            cin.clear(); // membersihkan flag error agar cin dapat digunakan kembali
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // membersihkan buffer input agar tidak ada sisa input
         }
     }
 }
@@ -85,15 +103,15 @@ string validasi_input_teks(const string& perintah)
         cout << perintah; // menampilkan perintah input
         getline(cin, teks); // membaca input teks beserta spasi
         if (!teks.empty()) return teks; // jika input tidak kosong maka kembalikan nilai
-        cout << BG_RED << WHITE << " [!] Tidak boleh kosong. " << RESET << "\n"; // pesan error
+        cout << BG_RED << WHITE << " [!] Tidak boleh kosong. " << RESET << "\n"; // jika input kosong maka cetak pesan error
     }
 }
 
 void swap_transaksi(Transaksi& a, Transaksi& b)
 {
-    Transaksi temp = a;
-    a = b;
-    b = temp;
+    Transaksi temp = a; // menyimpan nilai a ke variabel sementara
+    a = b; // menukar nilai a dengan b
+    b = temp; // menukar nilai b dengan variabel sementara
 }
 
 void sort_transaksi_tanggal(Transaksi arr[], int size)
