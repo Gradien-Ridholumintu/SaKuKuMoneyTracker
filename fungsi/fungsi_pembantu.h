@@ -1,4 +1,4 @@
-// Header file untuk deklarasi fungsi-fungsi pembantu
+// Header file untuk deklarasi fungsi-fungsi pembantu, yaitu fungsi-fungsi umum yang mendukung fungsi utama
 #ifndef FUNGSI_PEMBANTU_H // mengecek apakah FUNGSI_PEMBANTU_H sudah didefinisikan
 #define FUNGSI_PEMBANTU_H // mendefinisikan FUNGSI_PEMBANTU_H jika belum didefinisikan
 
@@ -9,6 +9,7 @@ void bersihkan_terminal(); // fungsi untuk membersihkan output pada terminal
 void enter_untuk_lanjut(); // fungsi untuk menunggu input enter dari pengguna
 void cetak_garis_tabel(); // fungsi untuk mencetak garis tabel
 void cetak_judul(const std::string& judul); // fungsi untuk mencetak judul dengan format tertentu
+void cetak_logo(); // fungsi untuk mencetak logo program
 
 // fungsi validasi input
 bool validasi_tanggal(const std::string& tanggal); // fungsi untuk memvalidasi format tanggal YYYY-MM-DD

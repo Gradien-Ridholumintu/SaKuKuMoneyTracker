@@ -1,4 +1,4 @@
-// Header file untuk mendefinisikan variabel global, konstanta, dan struktur data
+// Header file untuk mendeklarasikan variabel global, mendefinisikan konstanta global, dan mendefinisikan struktur data
 #ifndef DEFINISI_GLOBAL_H // mengecek apakah DEFINISI_GLOBAL_H sudah didefinisikan
 #define DEFINISI_GLOBAL_H // mendefinisikan DEFINISI_GLOBAL_H jika belum didefinisikan
 
@@ -6,6 +6,7 @@
 
 using namespace std;
 
+// konstanta global
 const int MAX_DATA = 1000; // maksimum data yang dapat disimpan pada array
 const string FILE_CSV = "data_transaksi.csv"; // nama file untuk menyimpan data transaksi
 
@@ -34,11 +35,9 @@ struct Transaksi {
     long long nominal;
 };
 
-// struct untuk menyimpan status program secara keseluruhan
-struct StatusProgram {
-    Transaksi daftar_transaksi[MAX_DATA];
-    int jumlah_data{};
-    long long budget_limit{};
-};
+// deklarasi variabel global menggunakan extern agar tidak terjadi duplikasi
+extern Transaksi daftar_transaksi[MAX_DATA]; // array of struct untuk menyimpan data transaksi
+extern int jumlah_data; // variabel untuk menyimpan jumlah data transaksi
+extern long long budget_limit; // variabel untuk menyimpan batas anggaran bulanan
 
 #endif
