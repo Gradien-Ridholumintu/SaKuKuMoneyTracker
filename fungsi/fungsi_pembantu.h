@@ -8,6 +8,7 @@
 void bersihkan_terminal(); // fungsi untuk membersihkan output pada terminal
 void enter_untuk_lanjut(); // fungsi untuk menunggu input enter dari pengguna
 void cetak_garis_tabel(); // fungsi untuk mencetak garis tabel
+void cetak_baris_tabel(int nomor, const Transaksi& trans);
 void cetak_judul(const std::string& judul); // fungsi untuk mencetak judul dengan format tertentu
 void cetak_logo(); // fungsi untuk mencetak logo program
 
