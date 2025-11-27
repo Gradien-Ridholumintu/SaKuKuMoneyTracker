@@ -26,7 +26,7 @@ void enter_untuk_lanjut()
 void cetak_judul(const string& judul)
 {
     cout << "\n"
-         << BG_BLUE << WHITE << BOLD // mengatur warna latar belakang biru dengan teks putih tebal
+         << BG_BIRU << PUTIH << BOLD // mengatur warna latar belakang biru dengan teks putih tebal
          << "   " << left << setw(40) << judul << "   " << RESET << "\n\n";
 }
 
@@ -42,6 +42,18 @@ void cetak_garis_tabel()
     cout << "\n";
 }
 
+void cetak_baris_tabel(int nomor, const Transaksi& trans)
+{
+    cout << "| " << left << setw(3) << nomor << "| " // mencetak No transaksi
+         << setw(13) << trans.tanggal
+         << "| " // mencetak Tanggal transaksi
+         // mencetak Tipe transaksi dengan warna hijau untuk Pemasukan dan merah untuk Pengeluaran
+         << ((trans.tipe == "Pemasukan") ? HIJAU : MERAH) << setw(12) << trans.tipe << RESET << "| " << setw(25) << trans.kategori
+         << "| " // mencetak Kategori transaksi
+         << setw(35) << trans.deskripsi << "| Rp " // mencetak Deskripsi transaksi
+         << right << setw(25) << trans.nominal << " |\n"; // mencetak Nominal transaksi
+}
+
 // ASCII Art logo program
 const string logo = CYAN "  $$$$$$\\            $$\\   $$\\          $$\\   $$\\          \n"
                          " $$  __$$\\           $$ | $$  |         $$ | $$  |         \n"
@@ -55,7 +67,7 @@ const string logo = CYAN "  $$$$$$\\            $$\\   $$\\          $$\\   $$\\
 void cetak_logo()
 {
     cout << logo << "\n"; // menampilkan logo ASCII art
-    cout << BG_BLUE << WHITE << BOLD // mengatur warna latar belakang biru dengan teks putih tebal
+    cout << BG_BIRU << PUTIH << BOLD // mengatur warna latar belakang biru dengan teks putih tebal
          << string(18, ' ') << "SMART MONEY TRACKER APP" << string(18, ' ') << RESET << "\n"; // menampilkan judul aplikasi
     cout << CYAN << "   ====================================================" << RESET << "\n\n"; // menampilkan garis pemisah
 }
@@ -73,7 +85,7 @@ long long validasi_input_angka(const string& perintah)
     while (true) {
         cout << perintah; // menampilkan perintah input
         if (cin >> nilai) { return nilai; } // jika input adalah angka maka kembalikan nilai
-        cout << BG_RED << WHITE << " [!] Input harus angka! " << RESET << "\n"; // jika input bukan angka maka cetak pesan error
+        cout << BG_MERAH << PUTIH << " [!] Input harus angka! " << RESET << "\n"; // jika input bukan angka maka cetak pesan error
         cin.clear(); // membersihkan flag error agar cin dapat digunakan kembali
         cin.ignore(numeric_limits<streamsize>::max(), '\n'); // membersihkan buffer input agar tidak ada sisa input
     }
@@ -86,10 +98,10 @@ int validasi_pilihan_menu(const string& perintah, const int min, const int max)
         cout << perintah; // menampilkan perintah input
         if (cin >> pilihan) { // jika pilihan adalah angka
             if (pilihan >= min && pilihan <= max) return pilihan; // jika pilihan ada dalam range maka kembalikan nilai
-            cout << BG_RED << WHITE << " [!] Pilihan tidak ada. " << RESET << "\n"; // jika pilihan di luar range maka cetak pesan error
+            cout << BG_MERAH << PUTIH << " [!] Pilihan tidak ada. " << RESET << "\n"; // jika pilihan di luar range maka cetak pesan error
         }
         else { // jika pilihan bukan angka
-            cout << BG_RED << WHITE << " [!] Input harus angka! " << RESET << "\n"; // jika pilihan bukan angka maka cetak pesan error
+            cout << BG_MERAH << PUTIH << " [!] Input harus angka! " << RESET << "\n"; // jika pilihan bukan angka maka cetak pesan error
             cin.clear(); // membersihkan flag error agar cin dapat digunakan kembali
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // membersihkan buffer input agar tidak ada sisa input
         }
@@ -103,7 +115,7 @@ string validasi_input_teks(const string& perintah)
         cout << perintah; // menampilkan perintah input
         getline(cin, teks); // membaca input teks beserta spasi
         if (!teks.empty()) return teks; // jika input tidak kosong maka kembalikan nilai
-        cout << BG_RED << WHITE << " [!] Tidak boleh kosong. " << RESET << "\n"; // jika input kosong maka cetak pesan error
+        cout << BG_MERAH << PUTIH << " [!] Tidak boleh kosong. " << RESET << "\n"; // jika input kosong maka cetak pesan error
     }
 }
 

@@ -13,18 +13,16 @@ const string FILE_CSV = "data_transaksi.csv"; // nama file untuk menyimpan data 
 // ANSI Escape Codes untuk mewarnai output di terminal
 #define RESET     "\x1B[0m"
 #define BOLD      "\x1B[1m"
-#define BLACK     "\x1B[30m"
-#define RED       "\x1B[31m"
-#define GREEN     "\x1B[32m"
-#define YELLOW    "\x1B[33m"
+#define HITAM     "\x1B[30m"
+#define MERAH     "\x1B[31m"
+#define HIJAU     "\x1B[32m"
+#define KUNING    "\x1B[33m"
 #define CYAN      "\x1B[36m"
-#define WHITE     "\x1B[37m"
-#define BG_RED    "\x1B[41m"
-#define BG_GREEN  "\x1B[42m"
-#define BG_YELLOW "\x1B[43m"
-#define BG_BLUE   "\x1B[44m"
-#define BG_CYAN   "\x1B[46m"
-#define BG_WHITE  "\x1B[47m"
+#define PUTIH     "\x1B[37m"
+#define BG_MERAH  "\x1B[41m"
+#define BG_HIJAU  "\x1B[42m"
+#define BG_KUNING "\x1B[43m"
+#define BG_BIRU   "\x1B[44m"
 
 // struct untuk menyimpan informasi transaksi
 struct Transaksi {

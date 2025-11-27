@@ -64,7 +64,7 @@ int main()
             break; // jika pilihan adalah 6 maka panggil fungsi cek_status_budget
         case 7: // jika pilihan adalah 7 maka simpan data dan keluar dari program
             simpan_data();
-            std::cout << GREEN << "\nTerima kasih! Data telah diamankan.\n" << RESET;
+            std::cout << HIJAU << "\nTerima kasih! Data telah diamankan.\n" << RESET;
             return 0;
         }
     }
